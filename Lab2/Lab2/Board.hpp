@@ -44,14 +44,31 @@ public:
 	WIN_TYPE get_status_game()
 	{
 		// ???
-		int str_flag = 0, column_flag = 0, diag_flag = 0;
+		int str_flag = 0, column_flag = 0, diag_flag = 0, draw_flag=0;
+		for (int i = 0; i < size; i++)
+		{
+			for (int j = 0; j < size; j++)
+			{
+				if (field[i][j] != CELL_TYPE::NONE)
+					draw_flag++;
+				else
+					break;
+			}
+		}
+		if (draw_flag == 9)
+		{
+			game_status = WIN_TYPE::DRAW;
+			return game_status;
+		}
+
+
 		for (int i = 0; i < size; i++)
 		{
 			for (int j = 0; j < size; j++)
 			{
 				if (field[i][j] == CELL_TYPE::KRESTIK)
 					str_flag++;
-				else if (field[i][j] == CELL_TYPE::NOLIK){
+				else if (field[i][j] == CELL_TYPE::NOLIK) {
 					str_flag--;
 				}
 
@@ -67,8 +84,9 @@ public:
 					diag_flag--;
 				}
 			}
-			if (str_flag == 3 || column_flag == 3 || diag_flag == 3)
-			{
+
+
+			if (str_flag == 3 || column_flag == 3 || diag_flag == 3) {
 				game_status = WIN_TYPE::KRESTIK;
 				return game_status;
 			}
@@ -76,13 +94,11 @@ public:
 				game_status = WIN_TYPE::NOLIK;
 				return game_status;
 			}
-			else {
-				game_status = WIN_TYPE::NONE;
-				return game_status;
-			}
 			str_flag = 0;
 			column_flag = 0;
 			diag_flag = 0;
 		}
+		game_status = WIN_TYPE::NONE;
+		return game_status;
 	}
 };
