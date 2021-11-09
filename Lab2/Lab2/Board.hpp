@@ -43,7 +43,6 @@ public:
 
 	WIN_TYPE get_status_game()
 	{
-		// ???
 		int str_flag = 0, column_flag = 0, diag_flag = 0, draw_flag=0;
 		for (int i = 0; i < size; i++)
 		{
@@ -97,6 +96,23 @@ public:
 			str_flag = 0;
 			column_flag = 0;
 			diag_flag = 0;
+		}
+		for (int i = 0, j=size-1; i < size; i++, j--)
+		{
+			if (field[i][j] == CELL_TYPE::KRESTIK)
+				diag_flag++;
+			else if (field[i][j] == CELL_TYPE::NOLIK)
+				diag_flag--;
+		}
+		if (diag_flag == 3)
+		{
+			game_status = WIN_TYPE::KRESTIK;
+			return game_status;
+		}
+		else if (diag_flag == -3)
+		{
+			game_status = WIN_TYPE::NOLIK;
+			return game_status;
 		}
 		game_status = WIN_TYPE::NONE;
 		return game_status;

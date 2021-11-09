@@ -8,8 +8,8 @@ int main()
 {
 	hidecursor();
 	setcolor(1);
-	setconsoletextsize(30);
-	setconsolesize(500, 500);
+	setconsoletextsize(40);
+	setconsolesize(700, 500);
 	char choise = 'y';
 
 	try
@@ -27,10 +27,6 @@ int main()
 	catch (const std::exception& ex)
 	{
 		std::cerr << "Standart exception: " << ex.what() << std::endl;
-	}
-	catch ()
-	{
-		
 	}
 	system("pause");
 	return 0;
