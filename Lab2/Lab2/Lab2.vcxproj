@@ -139,8 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Board.cpp" />
-    <ClCompile Include="BoardView.cpp" />
     <ClCompile Include="ConsoleGraphic.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

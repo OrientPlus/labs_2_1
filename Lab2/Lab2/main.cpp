@@ -1,4 +1,5 @@
 #include <exception>
+#include <locale>
 
 #include "Board.hpp"
 #include "BoardView.hpp"
@@ -6,6 +7,7 @@
 
 int main()
 {
+	/*setlocale(0, "ru");*/
 	hidecursor();
 	setcolor(1);
 	setconsoletextsize(40);
@@ -21,12 +23,11 @@ int main()
 			board_view.run();
 			std::cout << std::endl << "Press 'y' if you want to play again or any other key to exit: ";
 			std::cin >> choise;
-		}
-		
+		}		
 	}
 	catch (const std::exception& ex)
 	{
-		std::cerr << "Standart exception: " << ex.what() << std::endl;
+		std::cerr << ex.what() << std::endl;
 	}
 	system("pause");
 	return 0;

@@ -3,6 +3,8 @@
 #include "ConsoleGraphic.hpp"
 
 #include <iostream>
+#include <locale>
+#include <exception>
 
 enum class Players { KRESTIK, NOLIK, _COUNT };
 
@@ -47,7 +49,9 @@ public:
 		{
 			std::cout << "Enter coords(y,x):" << std::endl;
 			std::cin >> sy >> sx;
-			while (1)
+			/*if (sy[0]-'0' <-1 || sy[0] - '0'>255 || sx[0] -'0' <-1 || sx[0] -'0' > 255)
+				throw std::runtime_error("ERROR!  You have entered Russian characters! The isdigit function will not be able to shut down correctly");
+			*/while (1)
 			{
 				if (!isdigit(sy[0]) || !isdigit(sx[0]))
 				{
