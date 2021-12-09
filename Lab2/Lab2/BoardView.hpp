@@ -43,27 +43,48 @@ public:
 	void input_move()
 	{
 		int x, y;
-		std::string sx, sy;
+		std::string pos;
 		CELL_TYPE cell_value = CELL_TYPE::NONE;
 		do
 		{
 			std::cout << "Enter coords(y,x):" << std::endl;
-			std::cin >> sy >> sx;
-			/*if (sy[0]-'0' <-1 || sy[0] - '0'>255 || sx[0] -'0' <-1 || sx[0] -'0' > 255)
-				throw std::runtime_error("ERROR!  You have entered Russian characters! The isdigit function will not be able to shut down correctly");
-			*/while (1)
+			std::cin >> pos;
+
+			if (pos[0] == 'q')
 			{
-				if (!isdigit(sy[0]) || !isdigit(sx[0]))
-				{
-					std::cout << "ERROR! INVALID TYPE! " << std::endl;
-					std::cout << "Enter coords(y,x) again: " << std::endl;
-					std::cin >> sy >> sx;
-				}
-				else {
-					x = atoi(&sx[0]);
-					y = atoi(&sy[0]);
-					break;
-				}
+				x = 0; y = 0;
+			}
+			else if (pos[0] == 'w')
+			{
+				x = 1; y = 0;
+			}
+			else if (pos[0] == 'e')
+			{
+				x = 2; y = 0;
+			}
+			else if (pos[0] == 'a')
+			{
+				x = 0; y = 1;
+			}
+			else if (pos[0] == 's') 
+			{
+				x = 1; y = 1;
+			}
+			else if (pos[0] == 'd')
+			{
+				x = 2; y = 1;
+			}
+			else if (pos[0] == 'z')
+			{
+				x = 0; y = 2;
+			}
+			else if (pos[0] == 'x')
+			{
+				x = 1; y = 2;
+			}
+			else if (pos[0] == 'c')
+			{
+				x = 2; y = 2;
 			}
 
 			if (current_player == Players::KRESTIK)

@@ -59,7 +59,11 @@ public:
 			game_status = WIN_TYPE::DRAW;
 			return game_status;
 		}
-
+		else if (draw_flag < 5)
+		{
+			game_status = WIN_TYPE::NONE;
+			return game_status;
+		}
 
 		for (int i = 0; i < size; i++)
 		{

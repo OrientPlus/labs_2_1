@@ -5,9 +5,10 @@
 #include "BoardView.hpp"
 #include "ConsoleGraphic.hpp"
 
+//дописать ввод с клавиатуры, скинуть ссылку на гит
+
 int main()
 {
-	/*setlocale(0, "ru");*/
 	hidecursor();
 	setcolor(1);
 	setconsoletextsize(40);
