@@ -11,27 +11,18 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class gomoku; }
 QT_END_NAMESPACE
 
-class gomoku : public QMainWindow, public Board
+class gomoku : public QMainWindow
 {
     Q_OBJECT
 
-    Board &board;
     Players current_player;
 public:
-     gomoku(QWidget *parent, Board &_board) : QMainWindow(parent), board (_board)
-       , ui(new Ui::gomoku)
-     {
-         ui->setupUi(this);
-         current_player = Players::KRESTIK;
-     };
-    ~gomoku()
-     {
-         delete ui;
-     };
+     gomoku(QWidget *parent = nullptr);
+     ~gomoku();
 
 private:
     Ui::gomoku *ui;
-
+    Board *Board;
     void inputMove();
     void run();
 };

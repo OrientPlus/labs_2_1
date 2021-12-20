@@ -2,13 +2,19 @@
 #include "ui_gomoku.h"
 #include "Board.hpp"
 
-
+gomoku::gomoku(QWidget *parent) : QMainWindow(parent),
+   ui(new Ui::gomoku)
+{
+    board = new Board();
+    ui->setupUi(this);
+    current_player = Players::KRESTIK;
+};
 
 void gomoku::run()
 {
     while (board.get_status_game() == WIN_TYPE::NONE)
             {
-                inputMove();
+                inputMove(board);
                 current_player = static_cast<Players>((static_cast<int>(current_player)
                     + 1) % static_cast<int>(Players::_COUNT));
             }

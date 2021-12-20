@@ -61,3 +61,7 @@ dkms.conf
 *.db-wal
 *.log
 *.suo
+*.Debug
+*.Release
+*Makefile
+build*
