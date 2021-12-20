@@ -5,7 +5,7 @@
 #include "BoardView.hpp"
 #include "ConsoleGraphic.hpp"
 
-//дописать ввод с клавиатуры, скинуть ссылку на гит
+
 
 int main()
 {
