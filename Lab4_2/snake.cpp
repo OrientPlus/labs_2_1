@@ -50,8 +50,8 @@ void snake::InitGame()
     dots = 3;
     for (int i=0; i<dots;i++)
     {
-        x[i] = 50 - i*10;
-        y[i] = 50;
+        dot[i].setX(50 - i*10);
+        dot[i].setY(50);
     }
     LocateWall();
     LocateApple();
@@ -67,7 +67,7 @@ void snake::LocateApple()
     apple.setY((rand() % RAND_POS) * SIZE_DOTS);
     for (int i=0; i<dots; i++)
     {
-        if (apple.x() == x[i] && apple.y() == y[i])
+        if (apple.x() == dot[i].x() && apple.y() == dot[i].y())
         {
             apple.setX((rand() % RAND_POS) * SIZE_DOTS);
             apple.setY((rand() % RAND_POS) * SIZE_DOTS);
@@ -141,10 +141,10 @@ void snake::Drawing()
         {
             if (i==0)
             {
-                qp.drawImage(x[i], y[i], head_img);
+                qp.drawImage(dot[i].x(), dot[i].y(), head_img);
             }
             else {
-                qp.drawImage(x[i], y[i], tail_img);
+                qp.drawImage(dot[i].x(), dot[i].y(), tail_img);
             }
         }
     }
@@ -166,7 +166,7 @@ void snake::GameOver(QPainter &qp)
 
 void snake::CheckApple()
 {
-    if (x[0] == apple.x() && y[0] == apple.y())
+    if (dot[0].x() == apple.x() && dot[0].y() == apple.y())
     {
         dots++;
         if (dots < 48 && dots%2==0) { LevelUp(); }
@@ -178,32 +178,32 @@ void snake::Move()
 {
     for (int i= dots; i>0; i--)
     {
-        x[i] = x[i-1];
-        y[i] = y[i-1];
+        dot[i].setX(dot[i-1].x());
+        dot[i].setY(dot[i-1].y());
     }
-    if (rightDirection) {x[0] += SIZE_DOTS;}
-    if (leftDirection) {x[0] -= SIZE_DOTS;}
-    if (downDirection) {y[0] += SIZE_DOTS;}
-    if (upDirection) {y[0] -= SIZE_DOTS;}
+    if (rightDirection) {dot[0].setX(dot[0].x()+SIZE_DOTS);}
+    if (leftDirection) {dot[0].setX(dot[0].x()-SIZE_DOTS);}
+    if (downDirection) {dot[0].setY(dot[0].y()+SIZE_DOTS);}
+    if (upDirection) {dot[0].setY(dot[0].y()-SIZE_DOTS);}
 }
 
 void snake::CheckCollision()
 {
     for (int i=dots; i>0; i--)
     {
-        if (dots>=4 && (x[0] == x[i] && y[0] == y[i]))
+        if (dots>=4 && (dot[0].x() == dot[i].x() && dot[0].y() == dot[i].y()))
         {
             inGame = false;
         }
     }
-    if (y[0] > HEIGHT) {inGame = false;}
-    if (y[0] < 0) {inGame = false;}
-    if (x[0] >= WIDTH) {inGame = false;}
-    if (x[0] < 0) {inGame = false;}
+    if (dot[0].y() > HEIGHT) {inGame = false;}
+    if (dot[0].y() < 0) {inGame = false;}
+    if (dot[0].x() >= WIDTH) {inGame = false;}
+    if (dot[0].x() < 0) {inGame = false;}
     for (int i=0; i<7; i++)
     {
-        if ((x[0] == wall[i].x() && y[0] == wall[i].y()) ||
-                ((x[0] == big_wall[i].x() && y[0] == big_wall[i].y()) || (x[0] == (big_wall[i].x()+10) && y[0] == big_wall[i].y())))
+        if ((dot[0].x() == wall[i].x() && dot[0].y() == wall[i].y()) ||
+                ((dot[0].x() == big_wall[i].x() && dot[0].y() == big_wall[i].y()) || (dot[0].x() == (big_wall[i].x()+10) && dot[0].y() == big_wall[i].y())))
         {
             inGame = false;
             break;

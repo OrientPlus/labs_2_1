@@ -27,12 +27,12 @@ private:
     DELAY = 150,
     RAND_POS = 31;
 
-    int x[DOTS], y[DOTS],
-    dots,
+    int dots,
     timerID,
     temp =1, level = 0;
 
     QPoint apple, wall[7], big_wall[7];
+    QPoint dot[DOTS];
 
     bool rightDirection,
     leftDirection,
