@@ -23,6 +23,17 @@ public:
 		game_status = WIN_TYPE::NONE;
 	}
 
+    void restart()
+    {
+        for (int i=0; i<size; i++)
+        {
+            for (int j=0; j<size; j++)
+            {
+                field[i][j] = CELL_TYPE::NONE;
+            }
+        }
+    }
+
 	int get_size() const { return size; }
 
 	CELL_TYPE get_cell(int i, int j) const
